@@ -1,0 +1,26 @@
+<!-- templates/dashboard/view_referrals.html -->
+
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<!-- view_referrals.html -->
+
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Referrals</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for referral in referrals %}
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">{{ referral.company_name }}</h2>
+            <p><strong>Employee:</strong> {{ referral.employee_name }}</p>
+            <p><strong>LinkedIn:</strong> <a href="{{ referral.linkedin_url }}" target="_blank">{{ referral.linkedin_url }}</a></p>
+            <div class="mt-4">
+                <a href="{% url 'edit_referral' referral.id %}" class="text-blue-500 hover:underline mr-4">Edit</a>
+                <form action="{% url 'delete_referral' referral.id %}" method="post" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

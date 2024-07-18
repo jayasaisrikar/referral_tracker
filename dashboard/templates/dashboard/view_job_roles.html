@@ -1,0 +1,26 @@
+<!-- templates/dashboard/view_job_roles.html -->
+
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Job Roles</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for job_role in job_roles %}
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">{{ job_role.company_name }}</h2>
+            <p><strong>Role:</strong> {{ job_role.role }}</p>
+            <p><strong>Description:</strong> {{ job_role.job_description }}</p>
+            <p><strong>Job ID:</strong> {{ job_role.job_id }}</p>
+            <p><strong>Job URL:</strong> <a href="{{ job_role.job_url }}" target="_blank">{{ job_role.job_url }}</a></p>
+            <div class="mt-4">
+                <a href="{% url 'edit_job_role' job_role.id %}" class="text-blue-500 hover:underline mr-4">Edit</a>
+                <form action="{% url 'delete_job_role' job_role.id %}" method="post" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-red-500 hover:underline">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resume</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold">Dashboard</span>
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'dashboard' %}" class="hover:text-gray-300">Home</a></li>
+                <li><a href="{% url 'add_job_role' %}" class="hover:text-gray-300">Add Job Role</a></li>
+                <li><a href="{% url 'view_job_roles' %}" class="hover:text-gray-300">View Job Roles</a></li>
+                <li><a href="{% url 'view_referrals' %}" class="hover:text-gray-300">View Referrals</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Upload Resume</h1>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <!-- resume_upload.html -->
+<form action="{% url 'upload_resume' %}" method="post" enctype="multipart/form-data" class="space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+        {{ form.file.label_tag }}
+        {{ form.file }}
+        {% if form.file.errors %}
+            <p class="text-red-500 text-sm mt-1">{{ form.file.errors }}</p>
+        {% endif %}
+    </div>
+    <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Upload Resume</button>
+</form>
+
+        </div>
+        <a href="{% url 'dashboard' %}"
+            class="mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Back to
+            Dashboard</a>
+    </div>
+</body>
+
+</html>

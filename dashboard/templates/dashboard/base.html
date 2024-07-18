@@ -1,0 +1,32 @@
+<!-- templates/dashboard/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Dashboard{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Additional CSS or scripts can be added here -->
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold">Dashboard</span>
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'dashboard' %}" class="hover:text-gray-300">Home</a></li>
+                <li><a href="{% url 'add_job_role' %}" class="hover:text-gray-300">Add Job Role</a></li>
+                <li><a href="{% url 'view_job_roles' %}" class="hover:text-gray-300">View Job Roles</a></li>
+                <li><a href="{% url 'view_referrals' %}" class="hover:text-gray-300">View Referrals</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}
+        <!-- Content will be rendered here in child templates -->
+        {% endblock %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold">Dashboard</span>
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'dashboard' %}" class="hover:text-gray-300">Home</a></li>
+                <li><a href="{% url 'add_job_role' %}" class="hover:text-gray-300">Add Job Role</a></li>
+                <li><a href="{% url 'view_job_roles' %}" class="hover:text-gray-300">View Job Roles</a></li>
+                <li><a href="{% url 'view_referrals' %}" class="hover:text-gray-300">View Referrals</a></li>
+                <li><a href="{% url 'login' %}" class="hover:text-gray-300">Login</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Add Referral Employee -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Add Referral Employee</h2>
+                <form action="{% url 'add_referral' %}" method="post">
+                    {% csrf_token %}
+                    {{ referral_form.as_p }}
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add Referral</button>
+                </form>
+            </div>
+            
+            <!-- Add Job Role -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Add Job Role</h2>
+                <form action="{% url 'add_job_role' %}" method="post">
+                    {% csrf_token %}
+                    {{ job_role_form.as_p }}
+                    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Add Job Role</button>
+                </form>
+            </div>
+            
+            <!-- View All Job Roles -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">View All Job Roles</h2>
+                <a href="{% url 'view_job_roles' %}" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">View All Roles</a>
+            </div>
+            
+            <!-- View All Referrals -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">View All Referrals</h2>
+                <a href="{% url 'view_referrals' %}" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">View All Referrals</a>
+            </div>
+            
+            <!-- Search Referrals -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Search Referrals</h2>
+                <a href="{% url 'search_referrals' %}" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">Search Matches</a>
+            </div>
+            
+            <!-- Upload Resume -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Upload Resume</h2>
+                <form action="{% url 'upload_resume' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ resume_form.as_p }}
+                    <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Upload Resume</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

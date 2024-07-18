@@ -1,0 +1,26 @@
+# Project structure
+referral_app/
+│
+├── manage.py
+├── referral_project/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── dashboard/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   └── templates/
+│       └── dashboard/
+│           ├── base.html
+│           ├── dashboard.html
+│           ├── referral_form.html
+│           ├── job_form.html
+│           └── resume_upload.html
+│
+└── requirements.txt

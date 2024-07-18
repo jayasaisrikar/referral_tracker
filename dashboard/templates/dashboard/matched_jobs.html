@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matched Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <h1 class="text-3xl font-bold mt-8 mb-4">Matched Jobs</h1>
+    <div class="max-w-3xl w-full bg-white shadow-md p-6 rounded-lg">
+        {% for job, text in matched_jobs %}
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-2">Results for Resume: {{ text }}</h2>
+            <ul>
+                {% for role in job %}
+                <li class="text-lg mb-2">{{ role }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

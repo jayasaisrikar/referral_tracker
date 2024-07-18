@@ -1,0 +1,45 @@
+<!-- templates/dashboard/search_referrals.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Referrals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-gray-800 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold">Dashboard</span>
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'dashboard' %}" class="hover:text-gray-300">Home</a></li>
+                <li><a href="{% url 'add_job_role' %}" class="hover:text-gray-300">Add Job Role</a></li>
+                <li><a href="{% url 'view_job_roles' %}" class="hover:text-gray-300">View Job Roles</a></li>
+                <li><a href="{% url 'view_referrals' %}" class="hover:text-gray-300">View Referrals</a></li>
+                <!-- Add more links as needed -->
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">Search Referrals</h1>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Matching Referrals</h2>
+            {% if referrals %}
+                <ul>
+                    {% for referral in referrals %}
+                        <li class="mb-4">
+                            <p><strong>Company:</strong> {{ referral.company_name }}</p>
+                            <p><strong>Employee:</strong> {{ referral.employee_name }}</p>
+                            <p><strong>LinkedIn:</strong> <a href="{{ referral.linkedin_url }}" class="text-blue-500 hover:underline" target="_blank">{{ referral.linkedin_url }}</a></p>
+                            <p><strong>Job URL:</strong> <a href="{{ referral.job_url }}" class="text-blue-500 hover:underline" target="_blank">{{ referral.job_url }}</a></p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No matching referrals found.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'dashboard' %}" class="mt-4 inline-block bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Back to Dashboard</a>
+    </div>
+</body>
+</html>
